@@ -23,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         RecyclerView pokemonRecyclerView = findViewById(R.id.pokemonRecyclerView);
-        PokemonListAdapter adapter = new PokemonListAdapter();
+        PokemonListAdapter adapter = new PokemonListAdapter(pokemonInfo -> {
+            Toast.makeText(this, pokemonInfo.getName() + ", I choose you!", Toast.LENGTH_SHORT).show();
+        });
         pokemonRecyclerView.setAdapter(adapter);
 
         ServiceGenerator.getService().getPokemons().enqueue(new Callback<PokemonListWrapper>() {

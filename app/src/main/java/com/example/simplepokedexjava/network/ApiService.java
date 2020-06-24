@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 
 public interface ApiService {
 
-    @GET("pokemon/")
+    @GET("pokemon/?limit=807")
     Call<PokemonListWrapper> getPokemons();
 }
