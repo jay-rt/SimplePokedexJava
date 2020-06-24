@@ -3,6 +3,7 @@ package com.example.simplepokedexjava;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,7 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView pokemonRecyclerView = findViewById(R.id.pokemonRecyclerView);
         PokemonListAdapter adapter = new PokemonListAdapter(pokemonInfo -> {
-            Toast.makeText(this, pokemonInfo.getName() + ", I choose you!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, PokemonDetailsActivity.class);
+            intent.putExtra(PokemonConst.POKEMON_NAME, pokemonInfo.getName());
+            startActivity(intent);
         });
         pokemonRecyclerView.setAdapter(adapter);
 
