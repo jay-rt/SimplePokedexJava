@@ -1,11 +1,13 @@
 package com.example.simplepokedexjava.network.model;
 
+import com.example.simplepokedexjava.utils.PokemonTextUtils;
+
 public class PokemonInfo {
     String name;
     String url;
 
     public String getName() {
-        return name.substring(0,1).toUpperCase() + name.substring(1);
+        return PokemonTextUtils.capitalize(name);
     }
 
     public String getUrl() {
