@@ -1,4 +1,4 @@
-package com.example.simplepokedexjava;
+package com.example.simplepokedexjava.utils;
 
 public class PokemonConst {
     private PokemonConst(){

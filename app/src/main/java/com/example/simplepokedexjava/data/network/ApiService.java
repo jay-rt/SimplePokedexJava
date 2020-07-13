@@ -1,7 +1,7 @@
-package com.example.simplepokedexjava.network;
+package com.example.simplepokedexjava.data.network;
 
-import com.example.simplepokedexjava.network.model.PokemonDetails;
-import com.example.simplepokedexjava.network.model.PokemonListWrapper;
+import com.example.simplepokedexjava.data.network.model.PokemonDetails;
+import com.example.simplepokedexjava.data.network.model.PokemonListWrapper;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

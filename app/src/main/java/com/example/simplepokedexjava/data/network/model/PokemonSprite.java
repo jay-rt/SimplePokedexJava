@@ -1,4 +1,4 @@
-package com.example.simplepokedexjava.network.model;
+package com.example.simplepokedexjava.data.network.model;
 
 import com.squareup.moshi.Json;
 
