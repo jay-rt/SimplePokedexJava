@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.simplepokedexjava.data.database.LocalPokemonInfo;
 import com.example.simplepokedexjava.data.database.PokemonDatabase;
+import com.example.simplepokedexjava.data.network.model.PokemonDetails;
 import com.example.simplepokedexjava.data.network.model.PokemonInfo;
 import com.example.simplepokedexjava.data.network.model.PokemonListWrapper;
 
@@ -47,5 +48,29 @@ public class MainRepository {
 
     public void savePokemon(LocalPokemonInfo info) {
         AsyncTask.execute(() -> database.getPokemonDao().update(info));
+    }
+
+    public void getPokemonDetailsAndSave(LocalPokemonInfo info) {
+        ServiceGenerator.getService().getPokemonDetails(info.getName().toLowerCase()).enqueue(new Callback<PokemonDetails>() {
+            @Override
+            public void onResponse(Call<PokemonDetails> call, Response<PokemonDetails> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    PokemonDetails details = response.body();
+                    LocalPokemonInfo newInfo = new LocalPokemonInfo(
+                            info.getId(),
+                            info.getName(),
+                            true,
+                            details.getWeightString(),
+                            details.getHeightString(),
+                            details.getSpriteUrl());
+                    savePokemon(newInfo);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PokemonDetails> call, Throwable t) {
+
+            }
+        });
     }
 }

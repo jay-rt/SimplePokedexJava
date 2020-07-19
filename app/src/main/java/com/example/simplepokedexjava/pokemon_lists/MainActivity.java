@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         binding.pokemonRecyclerView.setAdapter(adapter);
-        ((SimpleItemAnimator)binding.pokemonRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
 
         viewModel.getPokemonInfos().observe(this, adapter::submitList);
 

@@ -37,9 +37,10 @@ public class MainViewModel extends ViewModel {
     }
 
     public void onFaveClick(LocalPokemonInfo info) {
-        //Update our fave state
-        LocalPokemonInfo newInfo = new LocalPokemonInfo(info.getId(), info.getName(), !info.isFaved());
-        //Save to our database
-        repository.savePokemon(newInfo);
+        if (info.isFaved()) {
+            repository.savePokemon(new LocalPokemonInfo(info.getId(), info.getName()));
+        }else{
+            repository.getPokemonDetailsAndSave(info);
+        }
     }
 }
